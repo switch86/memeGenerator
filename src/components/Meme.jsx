@@ -53,7 +53,7 @@ export default function Meme() {
         console.log(num)
         console.log(value) 
         console.log(memeList)
-        setMemeImage(...memeList[num])
+        setMemeImage(memeList[num])
     }
     
     function saveMeme(event) {
@@ -68,17 +68,18 @@ export default function Meme() {
             //     <h1 className="topText">{memeItem.topText}</h1>
             //     <h1 className="bottomText">{memeItem.bottomText}</h1>        
             // </div>
-                
-            
-        
-            
+                   
     function deleteMeme(num) {
         console.log(num)
-        setMemeList(memeList => ([
-            memeList[num] = 0,
-            ...memeList
-        ]))
+        setMemeList(memeList => {
+            if (memeList.id = num) {
+                return 
+            } else {
+                return [...memeList]
+            }
+        })
     }
+
     function editMeme(num) {
         console.log("edit meme")
     }
