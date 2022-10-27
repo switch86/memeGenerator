@@ -49,11 +49,22 @@ export default function Meme() {
     }
     function updateChange(num, name, value) {
         // const {name, value} = event.target
-        num = num-1
         console.log(num)
-        console.log(value) 
-        console.log(memeList)
-        setMemeImage(memeList[num])
+        console.log(name)
+        console.log(value)
+        console.log(memeImage)
+        setMemeList(prevImage => {
+            if (prevImage.id = num) {
+                return {
+                    ...prevImage,
+                    [name]: value,
+                }
+            } else {
+                return {
+                    ...prevImage
+                }
+            }
+        })
     }
     
     function saveMeme(event) {
@@ -61,7 +72,8 @@ export default function Meme() {
         setMemeList(memeList => ([
                 memeImage,
                 ...memeList
-            ])) 
+            ]))
+        console.log(memeList) 
         }      
             //     <div className="meme" onClick={deleteMeme}>
             //     <img src={memeItem.memeImage}></img>
@@ -70,18 +82,16 @@ export default function Meme() {
             // </div>
                    
     function deleteMeme(num) {
-        console.log(num)
-        setMemeList(memeList => {
-            if (memeList.id = num) {
-                return 
-            } else {
-                return [...memeList]
-            }
-        })
-    }
+        let arr = memeList.splice(num, 1)
+        setMemeList(arr)
+    }  
 
     function editMeme(num) {
+        setMemeImage({...memeList[num]})
+        console.log(num)
         console.log("edit meme")
+        console.log(memeImage)
+        
     }
     function saveNewMeme(num) {
         console.log("save new meme")
@@ -96,10 +106,10 @@ memeHTML = memeList.map(memeImage => {
                     topText={memeImage.topText}
                     bottomText={memeImage.bottomText}
                     memeImage={memeImage.randomImage}
-                    handleClick={deleteMeme}
+                    deleteMeme={deleteMeme}
                     editMeme={editMeme}
-                    handleChange={updateChange}
-                    saveMeme={saveNewMeme}
+                    updateChange={updateChange}
+                    saveNewMeme={saveNewMeme}
                 />  
             )
         })
