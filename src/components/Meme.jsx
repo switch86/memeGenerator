@@ -53,14 +53,7 @@ export default function Meme() {
         console.log(num)
         console.log(value) 
         console.log(memeList)
-        setMemeList(memeList => {
-            return [
-            ...memeList,
-            memeList[num] = {
-            ...memeList[num],
-            [name]: value
-            }]
-        })
+        setMemeImage(...memeList[num])
     }
     
     function saveMeme(event) {
@@ -82,7 +75,7 @@ export default function Meme() {
     function deleteMeme(num) {
         console.log(num)
         setMemeList(memeList => ([
-            memeList[num] = "",
+            memeList[num] = 0,
             ...memeList
         ]))
     }
