@@ -2,9 +2,8 @@ import Post from './Post'
 import React from "react"
 import axios from "axios"
 
-
-
 let memeHTML
+
 export default function Meme() {
     const [memeList, setMemeList] = React.useState([])
     const [memesArray, setMemesArray] = React.useState({})
@@ -71,7 +70,9 @@ export default function Meme() {
         }      
                    
     function deleteMeme(num) {
-        let arr = memeList.splice(num, 1)
+        num = num - 1
+        let arr = memeList.filter((meme, index) => index !== num)
+        console.log(arr)
         setMemeList(arr)
     }  
 
@@ -99,6 +100,7 @@ memeHTML = memeList.map(memeImage => {
                     editMeme={editMeme}
                     updateChange={updateChange}
                     saveNewMeme={saveNewMeme}
+                    memeList={memeList}
                 />  
             )
         })
