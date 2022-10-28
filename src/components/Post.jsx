@@ -1,15 +1,17 @@
 import React from "react"
 
 export default function Post(props) {
+    const {editMeme}=props
     const [editing, setEditing] = React.useState(false) 
     function deleteMeme(event) {
         event.preventDefault()
         props.deleteMeme(props.id)
         }
-    function editMeme(event) {
+    function updateMeme(event) {
         event.preventDefault()
+        editMeme(props.id)
         setEditing(true)
-        props.editMeme(props.id)
+    
     }
     function updateChange(event) {
         event.preventDefault()
@@ -31,12 +33,12 @@ export default function Post(props) {
             <form>
                 <input name="topText" className="topText" placeholder="Top Text" onChange={updateChange} value={props.topText}></input>
                 <input name="bottomText" className="bottomText" placeholder="Bottom Text" onChange={updateChange} value={props.bottomText}></input>
-                <button className="formButton" onClick={saveNewMeme}>Save</button>
+                <button className="formButton"  onClick={saveNewMeme}>Save</button>
             </form> 
             : 
             <div>
-                <button className="formButton" onClick={deleteMeme}>Delete</button>        
-                <button className="formButton" onClick={editMeme}>Edit</button>        
+                <button className="deleteButton" onClick={deleteMeme}>Delete</button>        
+                <button className="editButton" onClick={updateMeme}>Edit</button>       
             </div>}
         </div>
     )
