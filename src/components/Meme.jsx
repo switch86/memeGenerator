@@ -1,6 +1,4 @@
 import Post from './Post'
-import Text from "./Text"
-
 import React from "react"
 import axios from "axios"
 
@@ -25,9 +23,6 @@ export default function Meme() {
             .catch(error => console.log(error))
             }, [])
         
-    
-    // let random = Math.floor(Math.random() * memesArray.length)
-    // const [color, setColor] = React.useState(randomColor)
     function getMemeImage() {
         let random = Math.floor(Math.random() * memesArray.length)
         setMemeImage(prevState => {
@@ -48,7 +43,6 @@ export default function Meme() {
         })
     }
     function updateChange(num, name, value) {
-        // const {name, value} = event.target
         console.log(num)
         console.log(name)
         console.log(value)
@@ -75,11 +69,6 @@ export default function Meme() {
             ]))
         console.log(memeList) 
         }      
-            //     <div className="meme" onClick={deleteMeme}>
-            //     <img src={memeItem.memeImage}></img>
-            //     <h1 className="topText">{memeItem.topText}</h1>
-            //     <h1 className="bottomText">{memeItem.bottomText}</h1>        
-            // </div>
                    
     function deleteMeme(num) {
         let arr = memeList.splice(num, 1)
@@ -87,7 +76,7 @@ export default function Meme() {
     }  
 
     function editMeme(num) {
-        setMemeImage({...memeList[num]})
+        setMemeImage([...memeList[num]])
         console.log(num)
         console.log("edit meme")
         console.log(memeImage)
