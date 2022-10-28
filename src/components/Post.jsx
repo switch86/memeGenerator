@@ -10,7 +10,6 @@ export default function Post(props) {
         event.preventDefault()
         setEditing(true)
         props.editMeme(props.id)
-        props.deleteMeme(props.id)
     }
     function updateChange(event) {
         event.preventDefault()
@@ -30,10 +29,11 @@ export default function Post(props) {
             <p>{props.id}</p>
             {editing ? 
             <form>
-                <input name="topText" className="topText" placeholder="Top Text" onChange={updateChange} ></input>
-                <input name="bottomText" className="bottomText" placeholder="Bottom Text" onChange={updateChange} ></input>
+                <input name="topText" className="topText" placeholder="Top Text" onChange={updateChange} value={props.topText}></input>
+                <input name="bottomText" className="bottomText" placeholder="Bottom Text" onChange={updateChange} value={props.bottomText}></input>
                 <button className="formButton" onClick={saveNewMeme}>Save</button>
-            </form> : 
+            </form> 
+            : 
             <div>
                 <button className="formButton" onClick={deleteMeme}>Delete</button>        
                 <button className="formButton" onClick={editMeme}>Edit</button>        

@@ -10,7 +10,7 @@ export default function Meme() {
     const [memeImage, setMemeImage] = React.useState({
         topText: "",
         bottomText: "",
-        randomImage: "http://i.imgflip.com/1bij.jpg"
+        randomImage: ""
     })
 
     React.useEffect(() => {
@@ -45,7 +45,6 @@ export default function Meme() {
         console.log(num)
         console.log(name)
         console.log(value)
-        console.log(memeImage)
         setMemeList(prevImage => {
             if (prevImage.id = num) {
                 return {
@@ -58,6 +57,7 @@ export default function Meme() {
                 }
             }
         })
+        console.log(memeList)
     }
     
     function saveMeme(event) {
@@ -67,35 +67,32 @@ export default function Meme() {
                 ...memeList
             ]))
         console.log(memeList) 
-        }      
-                   
+        }                     
     function deleteMeme(num) {
         num = num - 1
         let arr = memeList.filter((meme, index) => index !== num)
         console.log(arr)
         setMemeList(arr)
     }  
-
     function editMeme(num) {
-        setMemeImage([...memeList[num]])
-        console.log(num)
-        console.log("edit meme")
-        console.log(memeImage)
-        
+        let oldMeme = memeList[num]
+        console.log(oldMeme)
+        console.log("edit")
     }
     function saveNewMeme(num) {
         console.log("save new meme")
     }
     let i = 0
-memeHTML = memeList.map(memeImage => {
+    console.log(memeList)
+memeHTML = memeList.map(meme => {
             i++
             return (
                 <Post 
                     key={i}
                     id={i}
-                    topText={memeImage.topText}
-                    bottomText={memeImage.bottomText}
-                    memeImage={memeImage.randomImage}
+                    topText={meme.topText}
+                    bottomText={meme.bottomText}
+                    memeImage={meme.randomImage}
                     deleteMeme={deleteMeme}
                     editMeme={editMeme}
                     updateChange={updateChange}
