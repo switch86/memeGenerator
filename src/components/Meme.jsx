@@ -42,7 +42,6 @@ export default function Meme() {
         })
     }
     function updateChange(num, name, value) {
-        num = num - 1
         console.log(num)
         console.log(name)
         console.log(value)
