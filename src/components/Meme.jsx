@@ -42,20 +42,25 @@ export default function Meme() {
         })
     }
     function updateChange(num, name, value) {
+        num = num - 1
         console.log(num)
         console.log(name)
         console.log(value)
-        setMemeList(prevImage => {
-            if (prevImage.id = num) {
-                return {
-                    ...prevImage,
-                    [name]: value,
+        setMemeList(prevState => {
+            return [
+            prevState.map(meme => {
+                if (meme.id === num) {
+                    return {
+                        ...meme,
+                        [name]: value,
                 }
-            } else {
-                return {
-                    ...prevImage
+                } else {
+                    return {
+                        ...meme
+                    }
                 }
-            }
+            })
+        ]
         })
         console.log(memeList)
     }
