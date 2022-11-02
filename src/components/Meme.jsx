@@ -41,28 +41,6 @@ export default function Meme() {
             }
         })
     }
-    function updateChange(num, name, value) {
-        console.log(num)
-        console.log(name)
-        console.log(value)
-        setMemeList(prevState => {
-            return [
-            prevState.map(meme => {
-                if (meme.id === num) {
-                    return {
-                        ...meme,
-                        [name]: value,
-                }
-                } else {
-                    return {
-                        ...meme
-                    }
-                }
-            })
-        ]
-        })
-        console.log(memeList)
-    }
     
     function saveMeme(event) {
         event.preventDefault()
@@ -70,7 +48,7 @@ export default function Meme() {
                 memeImage,
                 ...memeList
             ]))
-        console.log(memeList) 
+        
         }                     
     function deleteMeme(num) {
         num = num - 1
@@ -83,31 +61,48 @@ export default function Meme() {
         console.log(oldMeme)
         console.log("edit")
     }
-    function saveNewMeme(num) {
-        console.log("save new meme")
-    }
-    let i = 0
-    console.log(memeList)
-memeHTML = memeList.map(meme => {
-            i++
-            return (
-                <Post 
-                    key={i}
-                    id={i}
-                    topText={meme.topText}
-                    bottomText={meme.bottomText}
-                    memeImage={meme.randomImage}
-                    deleteMeme={deleteMeme}
-                    editMeme={editMeme}
-                    updateChange={updateChange}
-                    saveNewMeme={saveNewMeme}
-                    memeList={memeList}
-                />  
-            )
+    function saveUpdatedMeme(memeId, updatedMemeObject) {
+        console.log("save updated meme called" )
+        console.log("Item to update ID: ", memeId )
+        console.log("Values to update with ", updatedMemeObject )
+
+        setMemeList(prevList => {
+            return prevList.map((currentMeme, index) => {
+                if(index === memeId) { 
+                    return {
+                        topText: updatedMemeObject.topText, 
+                        bottomText: updatedMemeObject.bottomText,
+                        randomImage: currentMeme.randomImage
+                    }
+                }
+                else { 
+                    return currentMeme
+                }
+            })
         })
+    }
+    
+    console.log(memeList)
+    memeHTML = memeList.map((meme, index) => {
+        return (
+            <Post 
+                key={index}
+                id={index}
+                topText={meme.topText}
+                bottomText={meme.bottomText}
+                memeImage={meme.randomImage}
+                deleteMeme={deleteMeme}
+                editMeme={editMeme}
+                saveUpdatedMeme={saveUpdatedMeme}
+                memeList={memeList}
+            />  
+        )
+    })
+
     return (
         <div className="memePage">
-            <div className="MemeForm" name="Form">
+            
+            <div className="MemeForm" name="Form"> 
                 <input name="topText" className="topText" placeholder="Top Text" onChange={handleChange} value={memeImage.topText}></input>
                 <input name="bottomText" className="bottomText" placeholder="Bottom Text" onChange={handleChange} value={memeImage.bottomText}></input>
                 <button onClick={getMemeImage} className="formButton">Get a new meme image</button>    
