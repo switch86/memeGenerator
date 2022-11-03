@@ -37,9 +37,8 @@ export default function Post(props) {
     return (
         <div className="meme">
             <img src={props.memeImage}></img>
-            <h1 className="topText">{editFormInputs.topText}</h1>
-            <h1 className="bottomText">{editFormInputs.bottomText}</h1>
-            <p>{props.id}</p>
+            <h1 className="topText">{props.topText}</h1>
+            <h1 className="bottomText">{props.bottomText}</h1>
             {editing ? 
             <form>
                 <input 

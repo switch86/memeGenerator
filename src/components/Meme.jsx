@@ -4,6 +4,7 @@ import axios from "axios"
 
 let memeHTML
 
+// set state - memeList is the list of saved memes, memesArray all the meme data to be pulled from the api, and the meme image is the current working image. 
 export default function Meme() {
     const [memeList, setMemeList] = React.useState([])
     const [memesArray, setMemesArray] = React.useState({})
@@ -12,7 +13,7 @@ export default function Meme() {
         bottomText: "",
         randomImage: ""
     })
-
+// get meme list from api once on page load. 
     React.useEffect(() => {
         axios.get("https://api.imgflip.com/get_memes")
             .then(res => res.data.data.memes)
@@ -21,7 +22,7 @@ export default function Meme() {
             })
             .catch(error => console.log(error))
             }, [])
-        
+// pick a random number between 0 and the length of the data pulled   
     function getMemeImage() {
         let random = Math.floor(Math.random() * memesArray.length)
         setMemeImage(prevState => {
@@ -31,6 +32,8 @@ export default function Meme() {
             }
         })
     }
+
+// func to update the current meme image each time the value of the form changes
     function handleChange(event) {
         event.preventDefault()
         const {name, value} = event.target
@@ -40,10 +43,13 @@ export default function Meme() {
                 [name]: value,
             }
         })
+        console.log(memeImage)
     }
     
+    // function to add the memeimage to the meme list. 
     function saveMeme(event) {
         event.preventDefault()
+        console.log(memeImage)
         setMemeList(memeList => ([
                 memeImage,
                 ...memeList
@@ -84,6 +90,7 @@ export default function Meme() {
     
     console.log(memeList)
     memeHTML = memeList.map((meme, index) => {
+        console.log(meme)
         return (
             <Post 
                 key={index}

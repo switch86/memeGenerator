@@ -29,6 +29,7 @@
   border: .001px solid #532280;;
   grid-column: 1/3;
   height: 40px;
+  margin: 0 0 5px 0;
 }
 .deleteButton {
   background: linear-gradient(90deg, #532280 1.18%, #A626D3 100%);
@@ -60,7 +61,7 @@ input.bottomText {
   border-radius: 5px;
 }
 input.topText {
-  margin: 10px 0 20px 10px;
+  margin: 10px 10px 20px 10px;
   height: 40px;
   border-radius: 5px;
 }
@@ -74,6 +75,7 @@ input.topText {
   margin: 10px;
   border: black 1px solid;
   width: 100%;
+  max-height: fit-content;
   border-radius: 3px;
 }
 .meme h1.topText {
